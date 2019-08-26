@@ -111,7 +111,7 @@ http:
     - 172.17.0.0/16 # Example Docker bridge - change to your relevent ip subnet range.
     - 172.30.32.0/23 # Example Docker hassio - change to your relevent ip subnet range.
 ```    
-    
+
 ## Options: timeout
 
 By default Dasshio waits 20 seconds after a button press before resuming, this is to avoid detecting duplicate button presses. This option allows you to change this delay, if you want more responsive buttons then decrease this value and increase it if you experience duplicate presses.
@@ -124,12 +124,23 @@ Alternatively, you can access your Wi-Fi Router and check the MAC addresses in t
 
 ---------------------
 
+## Docker Build
+You need to update the reference in `dasshio/dasshio/config.json` if you want to build your own docker images
+`"image": "dafes/{arch}-dasshio",`
+
+Images are based on latest alpine linux and can be build with the following command:
+`sudo docker build . -t dafes/armv7-dasshio:0.37 --platform linux/armv7`
+And pushed with:
+`sudo docker push dafes/armv7-dasshio`
+
+For a detailed documentation about the docker build process please refer to [Docker](https://docs.docker.com/engine/reference/commandline/build/)
+
 ### Credit
 
 - [amazon-dashbutton](https://github.com/JulianKahnert/amazon-dashbutton) (Thanks to [JulianKahnert](https://github.com/JulianKahnert) in [Issue#1](https://github.com/danimtb/dasshio/issues/1))
 
 ### Sources & Inspiration:
-
+- [Original Dasshio](https://github.com/danimtb/dasshio)
 - [Raspberry Pi script](https://github.com/vancetran/amazon-dash-rpi)
 - [Maddox Dashbutton Repo](https://github.com/maddox/dasher)
 - [General Amazon Dash Hack](https://medium.com/@edwardbenson/how-i-hacked-amazon-s-5-wifi-button-to-track-baby-data-794214b0bdd8#.n6fhd3z40)
