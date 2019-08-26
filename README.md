@@ -129,7 +129,7 @@ You need to update the reference in `dasshio/dasshio/config.json` if you want to
 `"image": "dafes/{arch}-dasshio",`
 
 Images are based on latest alpine linux and can be build with the following command:
-`sudo docker build . -t dafes/armv7-dasshio:0.37 --platform linux/armv7`
+`sudo docker build . -t dafes/armv7-dasshio:0.37 --platform linux/arm32v7`
 And pushed with:
 `sudo docker push dafes/armv7-dasshio`
 
