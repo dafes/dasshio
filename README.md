@@ -125,11 +125,12 @@ Alternatively, you can access your Wi-Fi Router and check the MAC addresses in t
 ---------------------
 
 ## Docker Build
-You need to update the reference in `dasshio/dasshio/config.json` if you want to build your own docker images
+You need to update the reference in `dasshio/dasshio/config.json` if you want to use prebuild docker images
 `"image": "dafes/{arch}-dasshio",`
 
 Images are based on latest alpine linux and can be build with the following command:
-`sudo docker build . -t dafes/armv7-dasshio:0.37 --platform linux/arm32v7`
+`sudo docker build . -t dafes/armv7-dasshio:0.37 --build-arg BUILD_FROM="homeassistant/amd64-base:latest`
+For more information visit [hassio addon](https://developers.home-assistant.io/docs/en/hassio_addon_testing.html)
 And pushed with:
 `sudo docker push dafes/armv7-dasshio`
 
