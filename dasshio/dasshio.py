@@ -41,14 +41,16 @@ def arp_display(pkt):
     for button in config["buttons"]:
         button_address = button["address"].lower()
         if mac == button_address:
-            last_pressed = timeout_guard[button_address]
-            guard_time = last_pressed + timedelta(seconds=int(button_timeout))
-            if current_time < guard_time:
-                logger.info("Packet captured from button " + button["name"] +
-                             " ignored during guard time of " + str(button_timeout) + "s ...")
-                return True
+            # Check if value is in timeout_guard
+            if button_address in timeout_guard:
+                last_pressed = timeout_guard[button_address]
+                guard_time = last_pressed + timedelta(seconds=int(button_timeout))
+                if current_time < guard_time:
+                    logger.info("Packet captured from button " + button["name"] +
+                                 " ignored during guard time of " + str(button_timeout) + "s ...")
+                    return True
+            # if first button press:
             timeout_guard[button_address] = current_time
-
             logger.info(button["name"] + " button pressed!")
 
             url_request = ""
